@@ -10,6 +10,8 @@ class App extends React.Component {
     super(); //once we write 'super()' then we can use the 'this' below
     this.addFish = this.addFish.bind(this); //this basically makes addFish method available for App component
     this.loadSamples = this.loadSamples.bind(this); //again, we do this so that we can use 'this' in the methods below. for example, on the loadSamples method below
+    this.addToOrder = this.addToOrder.bind(this);
+
     this.state = {
       fishes: {},
       order: {}
@@ -33,6 +35,15 @@ class App extends React.Component {
     });
   }
 
+  addToOrder(key) {
+    //take a copy of our state
+    const order = {...this.state.order};
+    // update or add the new number of fish ordered
+    order[key] = order[key] + 1 || 1;
+    // update our state
+    this.setState({ order });
+  }
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -42,11 +53,11 @@ class App extends React.Component {
             {
               Object
                 .keys(this.state.fishes)
-                .map(key => <Fish key={key} details={this.state.fishes[key]} />)
+                .map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} />)
             }
           </ul>
         </div>
-        <Order />
+        <Order fishes={this.state.fishes} order={this.state.order} />
         <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
       </div>
     )
