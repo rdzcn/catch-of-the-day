@@ -11,8 +11,10 @@ class App extends React.Component {
     super(); //once we write 'super()' then we can use the 'this' below
     this.addFish = this.addFish.bind(this); //this basically makes addFish method available for App component
     this.updateFish = this.updateFish.bind(this);
+    this.removeFish = this.removeFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this); //again, we do this so that we can use 'this' in the methods below. for example, on the loadSamples method below
     this.addToOrder = this.addToOrder.bind(this);
+    this.removeOrder = this.removeOrder.bind(this);
 
     this.state = {
       fishes: {},
@@ -62,6 +64,13 @@ class App extends React.Component {
     this.setState({ fishes });
   }
 
+  removeFish(key) {
+    const fishes = {...this.state.fishes};
+    // delete fishes[key]; // this doesnt work with Firebase
+    fishes[key] = null;
+    this.setState({ fishes });
+  }
+
   loadSamples() {
     this.setState({
       fishes: sampleFishes
@@ -74,6 +83,16 @@ class App extends React.Component {
     // update or add the new number of fish ordered
     order[key] = order[key] + 1 || 1;
     // update our state
+    this.setState({ order });
+  }
+
+  removeOrder(key) {
+    const order = {...this.state.order};
+    if(order[key] === 1) {
+      delete order[key];
+    } else {
+      order[key] = order[key] - 1;
+    }
     this.setState({ order });
   }
 
@@ -93,12 +112,14 @@ class App extends React.Component {
         <Order 
           fishes={this.state.fishes} 
           order={this.state.order} 
-          params={this.props.params}/>
+          params={this.props.params}
+          removeOrder={this.removeOrder}/>
         <Inventory 
           addFish={this.addFish} 
           loadSamples={this.loadSamples}
           fishes={this.state.fishes}
-          updateFish={this.updateFish} />
+          updateFish={this.updateFish}
+          removeFish={this.removeFish} />
       </div>
     )
   }

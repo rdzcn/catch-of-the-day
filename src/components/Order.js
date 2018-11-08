@@ -6,7 +6,7 @@ class Order extends React.Component {
   constructor() {
     super();
     this.renderOrder = this.renderOrder.bind(this);
-  }
+ }
 
   renderOrder(key) {
     const fish = this.props.fishes[key];
@@ -19,6 +19,7 @@ class Order extends React.Component {
     return (
       <li key={key}>
         <span>{count}lbs {fish.name}</span>
+        <button onClick={() => this.props.removeOrder(key)}>x</button>
         <span className="price">{formatPrice(count * fish.price)}</span>
       </li>
     )
