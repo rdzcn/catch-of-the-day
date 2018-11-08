@@ -1,9 +1,9 @@
 import Rebase from 're-base';
 
 const base = Rebase.createClass({
-  apiKey: "AIzaSyDuI0JPJV8bTGYK96mYmpsjs6lw6-Ogbcs",
-  authDomain: "catch-of-the-day-c67e7.firebaseapp.com",
-  databaseURL: "https://catch-of-the-day-c67e7.firebaseio.com",
+  apiKey: "AIzaSyBF2TeiatvFI2-wg-DjNHfszy7i8IfTgls",
+  authDomain: "arda-catch-of-the-day-arda.firebaseapp.com",
+  databaseURL: "https://arda-catch-of-the-day-arda.firebaseio.com",
 });
 
 export default base;
