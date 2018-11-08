@@ -91,7 +91,7 @@ class App extends React.Component {
     if(order[key] === 1) {
       delete order[key];
     } else {
-      order[key] = order[key] - 1;
+      order[key]--;
     }
     this.setState({ order });
   }
