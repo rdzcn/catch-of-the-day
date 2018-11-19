@@ -11,7 +11,7 @@ class StorePicker extends React.Component {
   goToStore(event) {
     event.preventDefault(); //we stopped the Form from submitting
     // first grab the text from the form
-    const storeId = this.storeInput.value; //we can write this because we used 'ref' in the form
+    const storeId = this.refs.storeInput.value; //we can write this because we used 'ref' in the form
     // second we are going to transtion from '/' to '/store/:storeId
     this.context.router.transitionTo(`/store/${storeId}`)
   }
@@ -21,7 +21,7 @@ class StorePicker extends React.Component {
     return (
       <form className="store-selector" onSubmit={(e) => this.goToStore(e)}>
         <h2>Please Enter A Store</h2>
-        <input type="text" required placeholder="Store Name" defaultValue={getFunName()} ref={(input) => { this.storeInput = input }} />
+        <input type="text" required placeholder="Store Name" defaultValue={getFunName()} ref="storeInput" />
         <button type="submit">Visit Store →</button>
       </form>
     )
