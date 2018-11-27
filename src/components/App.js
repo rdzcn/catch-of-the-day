@@ -34,7 +34,7 @@ class App extends React.Component {
     if(localStorageRef) {
       //update our App component's order state
       this.setState({
-        order: JSON.parse(localStorageRef)
+        order: JSON.parse(localStorageRef) 
       });
     }
   }
